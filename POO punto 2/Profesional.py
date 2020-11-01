@@ -4,10 +4,13 @@ class Profesional(Users):
 
     def __init__(self, name, address, baja, area, titulo):
         super().__init__(name, address, baja)
-        self.Area = area
-        self.Titulo = titulo
-        self.AbonoFijo = 500
-        self.TotalPagar = 0 
+        self.__Name = self.Name
+        self.__Address = self.Address
+        self.__Baja = self.Baja
+        self.__Area = area
+        self.__Titulo = titulo
+        self.__AbonoFijo = 500
+        self.__TotalPagar = 0 
         
     
     def calcularImportes(self, pulsos):
@@ -24,14 +27,21 @@ class Profesional(Users):
         except ValueError:
             print('A ValueError occured!')
 
-        self.TotalPagar = self.AbonoFijo + pulsos
+        self.__TotalPagar = self.__AbonoFijo + pulsos
         
-        return self.TotalPagar
+        return self.__TotalPagar
+    
+    def getTotalAPagar(self):
+        return self.__TotalPagar
+
+    def getName(self):
+        return self.__Name
     
     def muestra(self):
-        print('Nombre: ', self.Name)
-        print('Direccion: ', self.Address)
-        print('Baja: ', self.Baja)
-        print('Area: ', self.Area)
-        print('Titulo: ', self.Titulo)
-        print('Abono fijo: ', self.AbonoFijo)
+        print('Nombre: ', self.__Name)
+        print('Direccion: ', self.__Address)
+        print('Baja: ', self.__Baja)
+        print('Area: ', self.__Area)
+        print('Titulo: ', self.__Titulo)
+        print('Abono fijo: ', self.__AbonoFijo)
+        print('\n')

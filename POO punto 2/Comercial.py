@@ -4,10 +4,13 @@ class Comercial(Users):
 
     def __init__(self, name, address, baja, rubro, cuilt):
         super().__init__(name, address, baja)
-        self.Rubro = rubro
-        self.CUILT = cuilt
-        self.AbonoFijo = 700
-        self.TotalPagar = 0
+        self.__Name = self.Name
+        self.__Address = self.Address
+        self.__Baja = self.Baja
+        self.__Rubro = rubro
+        self.__CUILT = cuilt
+        self.__AbonoFijo = 700
+        self.__TotalPagar = 0
         
     
     def calcularImpuestos(self, pulsos):
@@ -24,14 +27,24 @@ class Comercial(Users):
         except ValueError:
             print('A ValueError occured!')
 
-        self.TotalPagar = self.AbonoFijo + pulsos
+        self.__TotalPagar = self.__AbonoFijo + pulsos
         
-        return self.TotalPagar
+        return self.__TotalPagar
+
+    def getTotalAPagar(self):
+        return self.__TotalPagar
+
+    def getCuilt(self):
+        return self.__CUILT
+    
+    def getName(self):
+        return self.__Name
 
     def muestra(self):
-        print('Nombre: ', self.Name)
-        print('Direccion: ', self.Address)
-        print('Baja: ', self.Baja)
-        print('Rubro: ', self.Rubro)
-        print('CUILT: ', self.CUILT)
-        print('Abono fijo: ', self.AbonoFijo)
+        print('Nombre: ', self.__Name)
+        print('Direccion: ', self.__Address)
+        print('Baja: ', self.__Baja)
+        print('Rubro: ', self.__Rubro)
+        print('CUILT: ', self.__CUILT)
+        print('Abono fijo: ', self.__AbonoFijo)
+        print('\n')
