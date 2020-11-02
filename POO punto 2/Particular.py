@@ -30,7 +30,13 @@ class Particular(Users):
         self.__TotalPagar = self.__AbonoFijo + pulsos
 
         return self.__TotalPagar
+
+    def setAddress(self, address):
+        self.__Address = address
     
+    def setBaja(self, baja):
+        self.__Baja
+
     def getTotalAPagar(self):
         return self.__TotalPagar
     
@@ -39,6 +45,12 @@ class Particular(Users):
 
     def getName(self):
         return self.__Name
+    
+    def getAddress(self):
+        return self.__Address
+
+     def getBaja(self):
+        return self.__Baja
 
     def muestra(self):
         print('Nombre: ', self.__Name)

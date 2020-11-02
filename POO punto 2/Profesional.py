@@ -30,6 +30,12 @@ class Profesional(Users):
         self.__TotalPagar = self.__AbonoFijo + pulsos
         
         return self.__TotalPagar
+
+    def setAddress(self, address):
+        self.__Address = address
+    
+    def setBaja(self, baja):
+        self.__Baja
     
     def getTotalAPagar(self):
         return self.__TotalPagar

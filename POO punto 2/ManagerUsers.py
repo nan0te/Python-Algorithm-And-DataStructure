@@ -5,6 +5,7 @@ from Comercial import Comercial
 
 
 class ManagerUsers:
+    
     userslist = []
 
     def addProfesional(self, name, address, baja, area, titulo):
