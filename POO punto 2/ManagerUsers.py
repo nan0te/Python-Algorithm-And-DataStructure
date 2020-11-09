@@ -15,7 +15,7 @@ class ManagerUsers:
     def addParticular(self, name, address, baja, dni, fechaNac):
         particular = Particular(name, address, baja, dni, fechaNac)
         self.userslist.append(particular)
-
+|
     def addComercial(self, name, address, baja, rubro, cuilt):
         comercial = Comercial(name, address, baja, rubro, cuilt)
         self.userslist.append(comercial)
@@ -28,5 +28,12 @@ class ManagerUsers:
     def imprimirUsuarios(self):
         for user in self.userslist:
 	        user.muestra()
+
+    def deleteUser(self, name):
+        position = 0 
+        for user in self.userslist:
+            if name == user.getName():
+                user.pop(position)
+            position = position + 1
             
         
