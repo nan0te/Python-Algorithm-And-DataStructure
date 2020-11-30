@@ -1,15 +1,49 @@
+from classes.DatabaseConnection import DatabaseConnection
 
 class ControllerProveedor:
-    def addProveedor(self, id, direccion, telefono, nombre):
+    def addProveedor(self, direccion, telefono, nombre):
 
-        query = "INSERT INTO proveedor VALUES(" + id + ",\'" + direccion + "\', \'" + telefono + "\', \'" + nombre + "\')"
+        conn = DatabaseConnection('localhost', 'root', 'qweqwe1', 'final')
+
+        try:
+            with conn.connection.cursor() as cursor:
+                
+                sql = "INSERT INTO proveedor VALUES (%s, %s, %s, %s)"
+                cursor.execute(sql, (0, direccion, telefono, nombre))
+           
+            conn.connection.commit()
+
+        finally:
+            conn.connection.close()
+
 
     def eliminarProveedor(self, id):
 
-        query = "DELETE FROM proveedor WHERE idproveedor= " + id
+        conn = DatabaseConnection('localhost', 'root', 'qweqwe1', 'final')
+
+        try:
+            with conn.connection.cursor() as cursor:
+                
+                query = "DELETE FROM proveedor WHERE idproveedor=%s "
+                cursor.execute(query, (id))   
+            conn.connection.commit()    
+
+        finally:
+            conn.connection.close()
 
     def modificarProveedor(self, id, telefono):
 
-        query = "UPDATE proveedor SET  telefono=\'" + telefono + "\' WHERE idproveedor= " + id
+        conn = DatabaseConnection('localhost', 'root', 'qweqwe1', 'final')
+
+        try:
+            with conn.connection.cursor() as cursor:
+                
+                query = "UPDATE proveedor SET telefono=%s  WHERE idproveedor=%s;"
+                cursor.execute(query, (telefono, id))   
+            conn.connection.commit()    
+
+        finally:
+            conn.connection.close()
+
 
              

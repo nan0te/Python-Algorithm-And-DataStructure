@@ -13,3 +13,4 @@ class ControllerProducto:
 
         query = "UPDATE stock SET stock=" + stock + "WHERE idstock=" + stock
     
+ 
