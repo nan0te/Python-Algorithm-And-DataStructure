@@ -6,3 +6,4 @@ class Figura:
     def mostrar(self):
         pass
 
+    
