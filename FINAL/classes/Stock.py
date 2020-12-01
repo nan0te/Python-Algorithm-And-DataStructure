@@ -1,7 +1,7 @@
 
 class Stock:
-    def __init__(self, id, stock):
-        self.__Id = id
+    def __init__(self, stock):
+        
         self.__Stock = Stock
     
     def getStock(self):

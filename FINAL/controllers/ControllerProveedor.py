@@ -31,15 +31,15 @@ class ControllerProveedor:
         finally:
             conn.connection.close()
 
-    def modificarProveedor(self, id, telefono):
+    def modificarProveedor(self, id, direccion, telefono, nombreproveedor):
 
         conn = DatabaseConnection('localhost', 'root', 'qweqwe1', 'final')
 
         try:
             with conn.connection.cursor() as cursor:
                 
-                query = "UPDATE proveedor SET telefono=%s  WHERE idproveedor=%s;"
-                cursor.execute(query, (telefono, id))   
+                query = "UPDATE proveedor SET direccion=%s, telefono=%s, nombre_proveedor=%s WHERE idproveedor=(SELECT proveedor_idproveedor from producto WHERE idproducto=%s);"
+                cursor.execute(query, (direccion, telefono, nombreproveedor, id))   
             conn.connection.commit()    
 
         finally:

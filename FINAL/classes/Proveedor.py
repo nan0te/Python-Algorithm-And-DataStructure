@@ -1,7 +1,6 @@
 
 class Proveedor:
     def __init__(self, direccion, telefono, nombre):
-        self.__Id = id
         self.__Direccion = direccion
         self.__Telefono = telefono
         self.__Nombre = nombre

@@ -1,9 +1,9 @@
-from Proveedor import Proveedor
-from Stock import Stock
+from classes.Proveedor import Proveedor
+from classes.Stock import Stock
 
 class Articulo:
-    def __init__(self, id, nombre, descripcion, stock, Proveedor, Stock):
-        self.__Id = id
+    def __init__(self, nombre, descripcion, Stock, Proveedor):
+        
         self.__Nombre = nombre
         self.__Descripcion = descripcion
         self.__Stock = Stock
@@ -16,10 +16,10 @@ class Articulo:
         return self.__Descripcion
 
     def getStock(self):
-        return self.__Stock.getStock()
+        return self.__Stock
 
     def getNombreProveedor(self):
-        return self.__NombreProveedor.getNombre()
+        return self.__NombreProveedor
 
     def setNombre(self, nombre):
         self.__Nombre = nombre

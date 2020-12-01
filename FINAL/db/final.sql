@@ -39,7 +39,7 @@ CREATE TABLE IF NOT EXISTS `final`.`proveedor` (
   `idproveedor` INT NOT NULL AUTO_INCREMENT,
   `direccion` VARCHAR(45) NOT NULL,
   `telefono` VARCHAR(45) NOT NULL,
-  `nombre` VARCHAR(45) NOT NULL,
+  `nombre_proveedor` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`idproveedor`))
 ENGINE = InnoDB;
 
