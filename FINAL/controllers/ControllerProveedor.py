@@ -38,12 +38,36 @@ class ControllerProveedor:
         try:
             with conn.connection.cursor() as cursor:
                 
-                query = "UPDATE proveedor SET direccion=%s, telefono=%s, nombre_proveedor=%s WHERE idproveedor=(SELECT proveedor_idproveedor from producto WHERE idproducto=%s);"
+                query = "UPDATE proveedor SET direccion=%s, telefono=%s, nombre=%s WHERE idproveedor=%s;"
                 cursor.execute(query, (direccion, telefono, nombreproveedor, id))   
             conn.connection.commit()    
 
         finally:
             conn.connection.close()
 
+    def obtenerProveedor(self, id):
+        conn = DatabaseConnection('localhost', 'root', 'qweqwe1', 'final')
+        try:
+            with conn.connection.cursor() as cursor:           
+                sql = "SELECT telefono, nombre, direccion FROM proveedor where idproveedor=%s;"
+                cursor.execute(sql, (id))
+                result = cursor.fetchone()           
+        finally:
+            conn.connection.close()
+
+        return result
+
+    def cb_proveedores(self):
+        conn = DatabaseConnection('localhost', 'root', 'qweqwe1', 'final')
+        try:
+            with conn.connection.cursor() as cursor:           
+                sql = "SELECT nombre FROM proveedor;"
+                cursor.execute(sql)
+                result = cursor.fetchall()      
+               
+        finally:
+            conn.connection.close()
+
+        return result
 
              

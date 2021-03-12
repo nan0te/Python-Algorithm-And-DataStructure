@@ -1,0 +1,16 @@
+update  cliente,factura,detalle_factura SET nombre_cliente = "as" 
+		WHERE cliente.idcliente = factura.cliente_idcliente AND factura.idfactura = detalle_factura.factura_idfactura 
+
+				AND detalle_factura.iddetalle = 5;				AND detalle_factura.iddetalle = 5;
+
+
+delete  cliente,factura,detalle_factura  WHERE cliente.idcliente = factura.cliente_idcliente AND factura.idfactura = detalle_factura.factura_idfactura AND detalle_factura.iddetalle = 5;
+
+
+SET @idfactura = (SELECT factura_idfactura FROM detalle_factura where iddetalle=6);
+SET @idcliente = (SELECT cliente_idcliente FROM factura where idfactura=@idfactura);
+
+delete from detalle_factura where factura_idfactira=@idfactura;
+
+delete from factura WHERE idfactura = @idfactura;
+delete from cliente WHERE idcliente=@idcliente;			

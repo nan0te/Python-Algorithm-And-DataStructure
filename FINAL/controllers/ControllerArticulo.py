@@ -1,12 +1,12 @@
 from classes.DatabaseConnection import DatabaseConnection
 
 class ControllerArticulo:
-    def addProducto(self,  nombre, descripcion, nombreProveedor):
+    def add_producto(self,  nombre, descripcion, cantidad, proveedor, precio):
         conn = DatabaseConnection('localhost', 'root', 'qweqwe1', 'final')
         try:
             with conn.connection.cursor() as cursor:                
-                sql = "INSERT INTO producto VALUES (%s, %s, %s, (SELECT idproveedor from proveedor WHERE nombre_proveedor=%s), (SELECT idstock FROM stock ORDER BY idstock DESC LIMIT 1))"
-                cursor.execute(sql, (0, nombre, descripcion, nombreProveedor))
+                sql = "INSERT INTO producto VALUES (%s, %s, %s, %s, (SELECT idproveedor from proveedor WHERE nombre=%s), %s )"
+                cursor.execute(sql, (0, nombre, descripcion, cantidad, proveedor, precio))
            
             conn.connection.commit()
         finally:
@@ -26,17 +26,15 @@ class ControllerArticulo:
         finally:
             conn.connection.close()
         
-    def modificarProducto(self, id, nombre, stock, descripcion, nombreproveedor, direccion, telefono):
+    def modificarProducto(self, id, nombre, descripcion, stock, precio):
       
         conn = DatabaseConnection('localhost', 'root', 'qweqwe1', 'final')
         try:
             with conn.connection.cursor() as cursor:              
-                sql = "UPDATE producto SET nombre=%s, descripcion=%s WHERE idproducto=%s;"
-                #sql2 = "UPDATE stock SET cantidad=%s WHERE idstock=%s;"
-                #sql3 = "UPDATE proveedor SET direccion=%s, telefono=%s, nombre_proveedor=%s WHERE idproveedor=(SELECT proveedor_idproeedor from producto WHERE idproducto=%s);"
-                cursor.execute(sql, (nombre, descripcion, id))
-                #cursor.execute(sql2, (stock, id))
-                #cursor.execute(sql3, (direccion, telefono, nombreproveedor, id))
+                sql = "UPDATE producto SET nombre=%s, descripcion=%s, cantidad=%s, precio=%s WHERE idproducto=%s;"
+               
+                cursor.execute(sql, (nombre, descripcion, stock, precio, id))
+        
             conn.connection.commit()
 
         finally:
@@ -47,7 +45,7 @@ class ControllerArticulo:
         conn = DatabaseConnection('localhost', 'root', 'qweqwe1', 'final')
         try:
             with conn.connection.cursor() as cursor:           
-                sql = "SELECT p.*, pr.*, s.cantidad  from producto p JOIN proveedor pr ON p.idproducto=pr.idproveedor JOIN stock s ON p.idproducto=s.idstock WHERE idproducto=%s;"
+                sql = "SELECT pr.nombre AS proveedor, p.nombre, p.descripcion, p.cantidad, p.precio from producto p INNER JOIN proveedor pr where idproducto=%s;"
                 cursor.execute(sql, (id))
                 result = cursor.fetchone()           
         finally:
